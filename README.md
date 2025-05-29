@@ -1,19 +1,24 @@
 # Python Problem-Solving Guide
 
 ## Introduction
+
 This README provides a structured approach to Python problem-solving for technical interviews. It covers essential Python syntax, data structures, algorithms, and coding patterns commonly encountered in coding challenges.
 
 ## Table of Contents
-1. Variables and Data Types
-2. Control Flow (Loops & Conditions)
-3. Functions and Scope
-4. Data Structures (Lists, Tuples, Sets, Dictionaries)
-5. Algorithms for Problem-Solving
-6. Recursion and Dynamic Programming
-7. File Handling
-8. Exception Handling
-9. Object-Oriented Programming (OOP)
-10. Important Built-in Functions
+
+1. [Variables and Data Types](#1-variables-and-data-types)
+2. [Control Flow (Loops & Conditions)](#2-control-flow-loops--conditions)
+3. [Functions and Scope](#3-functions-and-scope)
+4. [Data Structures (Lists, Tuples, Sets, Dictionaries)](#4-data-structures)
+5. [Algorithms for Problem-Solving](#5-algorithms-for-problem-solving)
+6. [Recursion and Dynamic Programming](#6-recursion-and-dynamic-programming)
+7. [String Manipulation](#7-string-manipulation)
+8. [File Handling](#8-file-handling)
+9. [Exception Handling](#9-exception-handling)
+10. [Object-Oriented Programming (OOP)](#10-object-oriented-programming-oop)
+11. [Important Built-in Functions](#11-important-built-in-functions)
+12. [Useful Python Libraries for Interviews](#12-useful-python-libraries-for-interviews)
+13. [Conclusion](#conclusion)
 
 ---
 
@@ -29,12 +34,14 @@ is_active = True # Boolean
 ```
 
 ### Type Checking
+
 ```python
 print(type(x))  # <class 'int'>
 print(type(y))  # <class 'float'>
 ```
 
 ### Type Casting
+
 ```python
 num = int("5")   # Converts string to integer
 flt = float(10)   # Converts integer to float
@@ -50,8 +57,8 @@ d = dict([("name", "John"), ("age", 30)]) # Converts list of tuples to dictionar
 
 ## 2. Control Flow (Loops & Conditions)
 
-### If-Else Statements
 ```python
+# If-Else Statements
 num = 10
 if num > 0:
     print("Positive number")
@@ -61,39 +68,35 @@ else:
     print("Zero")
 ```
 
-### Loops
-
-**For Loop:**
 ```python
+# For Loop
 for i in range(5):
-    print(i)  # Outputs 0 to 4
+    print(i)
 ```
 
-**While Loop:**
 ```python
+# While Loop
 count = 0
 while count < 5:
     print(count)
     count += 1
 ```
 
-### Advanced Looping
-
-**Looping with `enumerate()`:**
 ```python
+# Enumerate
 fruits = ["apple", "banana", "cherry"]
 for index, fruit in enumerate(fruits):
     print(index, fruit)
 ```
 
-**List Comprehension with Loops:**
 ```python
+# List Comprehension
 squares = [x ** 2 for x in range(10)]
 print(squares)
 ```
 
-**Nested Loops:**
 ```python
+# Nested Loops
 for i in range(3):
     for j in range(2):
         print(f"i: {i}, j: {j}")
@@ -103,7 +106,6 @@ for i in range(3):
 
 ## 3. Functions and Scope
 
-### Defining and Calling Functions
 ```python
 def greet(name):
     return f"Hello, {name}!"
@@ -111,8 +113,8 @@ def greet(name):
 print(greet("Alice"))
 ```
 
-### Lambda Functions
 ```python
+# Lambda Function
 square = lambda x: x ** 2
 print(square(5))  # Output: 25
 ```
@@ -121,49 +123,49 @@ print(square(5))  # Output: 25
 
 ## 4. Data Structures
 
-### Lists
 ```python
+# List
 fruits = ["apple", "banana", "cherry"]
-print(fruits[0])  # Output: apple
+print(fruits[0])
 ```
 
-### Nested Lists (2D Lists)
 ```python
+# Nested List
 matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-print(matrix[1][2])  # Output: 6
+print(matrix[1][2])
 ```
 
-### Tuples (Immutable)
 ```python
+# Tuple
 tuple_data = (1, 2, 3)
-print(tuple_data[1])  # Output: 2
+print(tuple_data[1])
 ```
 
-### Sets (Unique Elements)
 ```python
+# Set
 unique_numbers = {1, 2, 3, 3}
-print(unique_numbers)  # Output: {1, 2, 3}
+print(unique_numbers)
 ```
 
-### Dictionaries (Key-Value Pairs)
 ```python
+# Dictionary
 person = {"name": "John", "age": 30}
-print(person["name"])  # Output: John
+print(person["name"])
 ```
 
 ---
 
 ## 5. Algorithms for Problem-Solving
 
-### Sorting Algorithms
 ```python
+# Sorting
 arr = [3, 1, 4, 1, 5]
 arr.sort()
-print(arr)  # Output: [1, 1, 3, 4, 5]
+print(arr)
 ```
 
-### Searching Algorithms
 ```python
+# Binary Search
 def binary_search(arr, target):
     left, right = 0, len(arr) - 1
     while left <= right:
@@ -177,20 +179,36 @@ def binary_search(arr, target):
     return -1
 ```
 
+```python
+# Two-pointer Technique
+def has_pair_with_sum(arr, target):
+    arr.sort()
+    left, right = 0, len(arr) - 1
+    while left < right:
+        current_sum = arr[left] + arr[right]
+        if current_sum == target:
+            return True
+        elif current_sum < target:
+            left += 1
+        else:
+            right -= 1
+    return False
+```
+
 ---
 
 ## 6. Recursion and Dynamic Programming
 
-### Recursion Example: Factorial
 ```python
+# Factorial (Recursion)
 def factorial(n):
     if n == 0:
         return 1
     return n * factorial(n - 1)
 ```
 
-### Memoization Example: Fibonacci
 ```python
+# Fibonacci (Memoization)
 memo = {}
 def fib(n):
     if n in memo:
@@ -201,26 +219,50 @@ def fib(n):
     return memo[n]
 ```
 
+```python
+# Fibonacci (Tabulation)
+def fib_tab(n):
+    if n <= 1:
+        return n
+    dp = [0] * (n + 1)
+    dp[1] = 1
+    for i in range(2, n + 1):
+        dp[i] = dp[i - 1] + dp[i - 2]
+    return dp[n]
+```
+
 ---
 
-## 7. File Handling
+## 7. String Manipulation
 
-### Reading a File
 ```python
+s = "hello world"
+print(s[::-1])
+print(s.split())
+print("".join(['a', 'b']))
+print(s.replace("world", "Python"))
+```
+
+---
+
+## 8. File Handling
+
+```python
+# Read File
 with open("file.txt", "r") as file:
     content = file.read()
     print(content)
 ```
 
-### Writing to a File
 ```python
+# Write File
 with open("file.txt", "w") as file:
     file.write("Hello, Python!")
 ```
 
 ---
 
-## 8. Exception Handling
+## 9. Exception Handling
 
 ```python
 try:
@@ -233,9 +275,8 @@ finally:
 
 ---
 
-## 9. Object-Oriented Programming (OOP)
+## 10. Object-Oriented Programming (OOP)
 
-### Class and Object Example
 ```python
 class Person:
     def __init__(self, name, age):
@@ -249,126 +290,62 @@ person1 = Person("Alice", 25)
 print(person1.greet())
 ```
 
+---
 
+## 11. Important Built-in Functions
 
-## 10. Important Built-in Functions
-
-### `len()` - Get the length of a sequence
 ```python
-print(len([1, 2, 3]))  # Output: 3
+print(len([1, 2, 3]))               # Length of a list
+print(max([10, 20, 30]))           # Maximum value
+print(min([10, 20, 30]))           # Minimum value
+print(sum([1, 2, 3, 4]))           # Sum of elements in a list
+
+print(list(map(lambda x: x**2, [1, 2, 3])))  # Square all elements using map
+print(list(filter(lambda x: x % 2 == 0, [1, 2, 3, 4])))  # Filter even numbers
+
+print(list(zip(["Alice", "Bob"], [25, 30])))  # Combine two lists into tuples
+print(list(reversed([1, 2, 3, 4])))             # Reverse a list
+print(sorted([3, 1, 4, 1, 5]))                  # Sort a list
+
+print(all([True, True, False]))     # Returns True if all elements are True
+print(any([False, False, True]))    # Returns True if at least one element is True
+
+print(round(3.14159, 2))            # Round to 2 decimal places
+print(abs(-10))                     # Absolute value
+print(divmod(10, 3))                # Returns (quotient, remainder)
+
+print(ord('A'))                     # ASCII value of character
+print(chr(65))                      # Character from ASCII value
+print(eval("3 + 5"))                # Evaluate a string expression
+print("{:.2f}".format(3.14159))      # Format float to 2 decimal places
+
+print(isinstance(10, int))          # Check if variable is instance of type
+print(hex(255))                     # Convert to hexadecimal
+print(bin(10))                      # Convert to binary
+print(oct(8))                       # Convert to octal
 ```
 
-### `max()` and `min()` - Get the maximum and minimum values
+---
+
+## 12. Useful Python Libraries for Interviews
+
 ```python
-print(max([10, 20, 30]))  # Output: 30
-print(min([10, 20, 30]))  # Output: 10
+# collections
+from collections import Counter, defaultdict
+print(Counter("aabbc"))
 ```
 
-### `sum()` - Get the sum of elements in a list
 ```python
-print(sum([1, 2, 3, 4]))  # Output: 10
+# heapq
+import heapq
+nums = [5, 1, 3]
+heapq.heapify(nums)
+print(heapq.heappop(nums))
 ```
 
-### `map()` - Apply a function to all elements
 ```python
-numbers = [1, 2, 3, 4]
-squared = list(map(lambda x: x ** 2, numbers))
-print(squared)  # Output: [1, 4, 9, 16]
+# itertools
+from itertools import permutations
+print(list(permutations([1, 2, 3])))
 ```
 
-### `filter()` - Filter elements based on a condition
-```python
-numbers = [1, 2, 3, 4]
-even_numbers = list(filter(lambda x: x % 2 == 0, numbers))
-print(even_numbers)  # Output: [2, 4]
-```
-
-### `zip()` - Combine multiple iterables
-```python
-names = ["Alice", "Bob"]
-ages = [25, 30]
-combined = list(zip(names, ages))
-print(combined)  # Output: [('Alice', 25), ('Bob', 30)]
-```
-
-### `reversed()` - Reverse an iterable
-```python
-numbers = [1, 2, 3, 4]
-print(list(reversed(numbers)))  # Output: [4, 3, 2, 1]
-```
-
-### `sorted()` - Sort an iterable
-```python
-numbers = [3, 1, 4, 1, 5]
-print(sorted(numbers))  # Output: [1, 1, 3, 4, 5]
-```
-
-### `all()` - Check if all elements are True
-```python
-print(all([True, True, False]))  # Output: False
-print(all([1, 2, 3]))  # Output: True
-```
-
-### `any()` - Check if any element is True
-```python
-print(any([False, False, True]))  # Output: True
-print(any([0, 0, 0]))  # Output: False
-```
-
-### `round()` - Round a number
-```python
-print(round(3.14159, 2))  # Output: 3.14
-```
-
-### `abs()` - Get the absolute value of a number
-```python
-print(abs(-10))  # Output: 10
-```
-
-### `divmod()` - Get quotient and remainder
-```python
-print(divmod(10, 3))  # Output: (3, 1)
-```
-
-### `ord()` and `chr()` - Convert between characters and ASCII values
-```python
-print(ord('A'))  # Output: 65
-print(chr(65))  # Output: 'A'
-```
-
-### `eval()` - Evaluate a string expression
-```python
-expr = "3 + 5"
-print(eval(expr))  # Output: 8
-```
-
-### `format()` - Format strings
-```python
-print("{:.2f}".format(3.14159))  # Output: '3.14'
-```
-
-### `enumerate()` - Add index to an iterable
-```python
-fruits = ["apple", "banana", "cherry"]
-for index, fruit in enumerate(fruits):
-    print(index, fruit)
-```
-
-### `isinstance()` - Check data type
-```python
-print(isinstance(10, int))  # Output: True
-print(isinstance("hello", str))  # Output: True
-```
-
-### `hex()`, `bin()`, `oct()` - Convert numbers to different bases
-```python
-print(hex(255))  # Output: '0xff'
-print(bin(10))  # Output: '0b1010'
-print(oct(8))  # Output: '0o10'
-```
-
-
-
-## Conclusion
-
-This guide serves as a foundational reference for Python problem-solving in coding interviews. Keep practicing and refining your approach to master competitive programming!
