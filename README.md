@@ -122,6 +122,9 @@ lst = list("abc")   # Converts string to list of characters
 st = set([1, 2, 2, 3]) # Converts list to set (removes duplicates)
 tpl = tuple([1, 2, 3]) # Converts list to tuple
 d = dict([("name", "John"), ("age", 30)]) # Converts list of tuples to dictionary
+print(ord('A'))  # 65 char to ASCII code
+print(chr(65))  # A ASCII code to char
+
 ```
 
 ### Constants
